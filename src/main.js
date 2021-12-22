@@ -6,4 +6,4 @@ import store from "./store";
 import "./registerServiceWorker";
 import "./style.css";
 
-createApp(App).use(store).use(store).use(router).mount("#app");
+createApp(App).use(store).use(router).mount("#app");

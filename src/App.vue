@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <router-view class="container" />
+  <router-view class="container mt-20" />
 </template>
 <script>
 import Navbar from "./components/Navbar.vue";
@@ -10,4 +10,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style>
+body {
+  background-color: rgb(250, 246, 241);
+}
+</style>

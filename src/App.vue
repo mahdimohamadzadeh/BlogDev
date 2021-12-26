@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <router-view class="container mt-20" />
+  <router-view class="container mx-auto px-4" />
 </template>
 <script>
 import Navbar from "./components/Navbar.vue";

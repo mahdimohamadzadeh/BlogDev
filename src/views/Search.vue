@@ -1,0 +1,60 @@
+<template>
+  <div
+    id="Search"
+    class="h-screen w-3/4 flex flex-col justify-center items-center"
+  >
+    <button @click="mines" class="absolute top-16 right-2">
+      <Icon icon="ant-design:close-outlined" color="red" height="40" />
+    </button>
+
+    <h1 class="text-center font-bold text-white text-2xl mb-8 text-text">
+      جستجو در فرامس
+    </h1>
+    <input
+      class="h-12 rounded-2xl text-center mb-5"
+      type="text"
+      placeholder="جستجو"
+      v-model="search"
+    />
+    <button
+      class="px-12 py-1 block rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-white bg-yellowDark hover:bg-blue-600 active:bg-blue-700 focus:ring-blue-300"
+      @click="searchByCategory"
+    >
+      <Icon icon="akar-icons:search" color="white" class="" height="40" />
+    </button>
+  </div>
+</template>
+
+<script>
+import { Icon } from "@iconify/vue";
+export default {
+  components: {
+    Icon,
+  },
+  data() {
+    return {
+      search: "",
+    };
+  },
+  computed: {
+    allPosts() {
+      return this.$store.getters.allPosts;
+    },
+  },
+  methods: {
+    mines() {
+      this.$router.push({ path: "/" });
+    },
+    searchByCategory() {
+      this.allPosts.filter((post) => {
+        console.log(post.category === this.search);
+      });
+    },
+  },
+  mounted() {
+    this.$store.dispatch("getPosts");
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>

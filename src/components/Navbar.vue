@@ -1,5 +1,5 @@
 <template>
-  <nav id="Navbar" class="flex md:justify-center">
+  <nav id="Navbar" class="flex md:justify-center overflow-hidden">
     <div
       id="Nav"
       class="fixed w-full md:w-4/5 flex h-14 bg-back justify-between shadow-xl"
@@ -54,27 +54,22 @@
         </button>
       </div>
     </div>
-    <Search v-if="search" class="md:hidden" />
   </nav>
 </template>
 
 <script>
-import Search from "./Search.vue";
 import { Icon } from "@iconify/vue";
 export default {
   name: "Navbar",
   components: {
     Icon,
-    Search,
   },
   data() {
-    return {
-      search: false,
-    };
+    return {};
   },
   methods: {
     isSearch() {
-      this.search = !this.search;
+      this.$router.push({ path: "/search" });
     },
   },
 };

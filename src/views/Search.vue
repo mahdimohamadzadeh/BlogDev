@@ -3,8 +3,8 @@
     id="Search"
     class="h-screen w-3/4 flex flex-col justify-center items-center"
   >
-    <button @click="mines" class="absolute top-16 right-2">
-      <Icon icon="ant-design:close-outlined" color="red" height="40" />
+    <button @click="mines" class="absolute top-16 right-4">
+      <Icon icon="carbon:close-outline" color="#222" height="40" />
     </button>
 
     <h1 class="text-center font-bold text-white text-2xl mb-8 text-text">

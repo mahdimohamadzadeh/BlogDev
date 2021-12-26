@@ -50,7 +50,20 @@
           <Icon icon="bytesize:moon" color="#3c1642" height="30" />
         </button>
         <button>
-          <Icon icon="feather:menu" color="#3c1642" height="30" />
+          <Icon
+            :class="menu ? 'hidden' : 'block'"
+            @click="goMenu"
+            icon="feather:menu"
+            color="#3c1642"
+            height="30"
+          />
+          <Icon
+            @click="close"
+            :class="menu ? 'block' : 'hidden'"
+            icon="ant-design:close-outlined"
+            color="#3c1642"
+            height="35"
+          />
         </button>
       </div>
     </div>
@@ -65,11 +78,21 @@ export default {
     Icon,
   },
   data() {
-    return {};
+    return {
+      menu: false,
+    };
   },
   methods: {
     isSearch() {
       this.$router.push({ path: "/search" });
+    },
+    goMenu() {
+      this.$router.push({ path: "/menu" });
+      this.menu = true;
+    },
+    close() {
+      this.$router.push({ path: "/" });
+      this.menu = false;
     },
   },
 };

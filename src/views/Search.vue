@@ -3,21 +3,21 @@
     id="Search"
     class="h-screen w-3/4 flex flex-col justify-center items-center"
   >
-    <button @click="mines" class="absolute top-16 right-4">
+    <button @click="mines" class="absolute top-16 right-4 md:right-36">
       <Icon icon="carbon:close-outline" color="#222" height="40" />
     </button>
 
-    <h1 class="text-center font-bold text-white text-2xl mb-8 text-text">
+    <h1 class="text-center font-bold text-purple-900 text-2xl mb-8 text-text">
       جستجو در فرامس
     </h1>
     <input
-      class="h-12 rounded-2xl text-center mb-5"
+      class="h-12 rounded-2xl text-center mb-5 border-2 border-pink-400 outline-white"
       type="text"
       placeholder="جستجو"
       v-model="search"
     />
     <button
-      class="px-12 py-1 block rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-white bg-yellowDark hover:bg-blue-600 active:bg-blue-700 focus:ring-blue-300"
+      class="px-12 py-1 block rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-white bg-yellow-500 hover:bg-green-500 focus:ring-blue-300"
       @click="searchByCategory"
     >
       <Icon icon="akar-icons:search" color="white" class="" height="40" />

@@ -2,13 +2,15 @@
   <nav id="Navbar" class="flex md:justify-center overflow-hidden">
     <div
       id="Nav"
-      class="fixed w-full md:w-4/5 flex h-14 bg-back justify-between shadow-xl"
+      class="fixed w-full md:w-4/5 flex h-14 bg-pink-300 justify-between shadow-xl"
     >
       <div class="right-nav flex items-center px-2 md:px-4">
         <router-link to="/"
           ><img src="../assets/image/iconSite.png" class="w-11 h-11"
         /></router-link>
-        <router-link to="/" class="text-lg mr-2 md:text-xl md:mr-3"
+        <router-link
+          to="/"
+          class="text-lg text-gray-800 mr-2 md:text-xl md:mr-3"
           >فرامس</router-link
         >
       </div>
@@ -80,11 +82,13 @@ export default {
   data() {
     return {
       menu: false,
+      darkmode: false,
     };
   },
   methods: {
     isSearch() {
       this.$router.push({ path: "/search" });
+      this.menu = false;
     },
     goMenu() {
       this.$router.push({ path: "/menu" });
@@ -94,6 +98,11 @@ export default {
       this.$router.push({ path: "/" });
       this.menu = false;
     },
+  },
+  mounted() {
+    // if (this.$route.name == "Home") {
+    //   this.menu = false;
+    // }
   },
 };
 </script>

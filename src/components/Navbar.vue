@@ -1,22 +1,24 @@
 <template>
   <nav id="Navbar" class="flex md:justify-center overflow-hidden">
     <div
-      id="Nav"
-      class="fixed w-full md:w-4/5 flex h-14 bg-pink-300 justify-between shadow-xl"
+      class="fixed w-full md:w-4/5 flex h-14 bg-pink-300 dark:bg-purple-800 justify-between shadow-xl"
     >
       <div class="right-nav flex items-center px-2 md:px-4">
-        <router-link to="/"
+        <router-link v-if="theme == 'light'" to="/"
+          ><img src="../assets/image/logo-normal.png" class="w-11 h-11"
+        /></router-link>
+        <router-link v-if="theme == 'dark'" class="text-gray-100" to="/"
           ><img src="../assets/image/iconSite.png" class="w-11 h-11"
         /></router-link>
         <router-link
           to="/"
-          class="text-lg text-gray-800 mr-2 md:text-xl md:mr-3"
+          class="text-lg text-purple-900 dark:text-yellow-400 mr-2 md:text-xl md:mr-3"
           >فرامس</router-link
         >
       </div>
       <div class="pt-2 relative mx-auto hidden md:block">
         <input
-          class="bg-white h-10 px-14 rounded-lg text-sm text-center lg:px-32 xl:px-44"
+          class="bg-white dark:bg-yellow-100 h-10 px-14 rounded-lg text-sm text-center lg:px-32 xl:px-44"
           type="search"
           name="search"
           placeholder="جستجو"
@@ -45,25 +47,31 @@
       <div
         class="Left-nav flex items-center w-2/5 justify-around md:w-1/5 lg:w-1/6 xl:w-40"
       >
-        <button @click="isSearch" class="md:hidden">
-          <Icon icon="akar-icons:search" color="#3c1642" height="30" />
+        <button
+          @click="goPageSearch"
+          class="md:hidden text-purple-900 dark:text-yellow-400"
+        >
+          <Icon icon="akar-icons:search" height="30" />
         </button>
-        <button>
-          <Icon icon="bytesize:moon" color="#3c1642" height="30" />
+        <button
+          @click="activeDarkTheme"
+          class="text-purple-900 dark:text-yellow-400"
+        >
+          <Icon icon="bytesize:moon" height="30" />
         </button>
         <button>
           <Icon
             :class="menu ? 'hidden' : 'block'"
-            @click="goMenu"
+            class="text-purple-900 dark:text-yellow-400"
+            @click="goPageMenu"
             icon="feather:menu"
-            color="#3c1642"
             height="30"
           />
           <Icon
-            @click="close"
+            @click="closeMenuPage"
             :class="menu ? 'block' : 'hidden'"
             icon="ant-design:close-outlined"
-            color="#3c1642"
+            class="text-purple-900 dark:text-yellow-400"
             height="35"
           />
         </button>
@@ -74,6 +82,7 @@
 
 <script>
 import { Icon } from "@iconify/vue";
+import { mapGetters } from "vuex";
 export default {
   name: "Navbar",
   components: {
@@ -82,27 +91,37 @@ export default {
   data() {
     return {
       menu: false,
-      darkmode: false,
     };
   },
   methods: {
-    isSearch() {
+    goPageSearch() {
       this.$router.push({ path: "/search" });
       this.menu = false;
     },
-    goMenu() {
+    goPageMenu() {
       this.$router.push({ path: "/menu" });
       this.menu = true;
     },
-    close() {
+    closeMenuPage() {
       this.$router.push({ path: "/" });
       this.menu = false;
     },
+    activeDarkTheme() {
+      this.$store.dispatch("toggleTheme");
+    },
   },
-  mounted() {
-    // if (this.$route.name == "Home") {
-    //   this.menu = false;
-    // }
+  beforeMount() {
+    this.$store.dispatch("initTheme");
+  },
+  computed: {
+    ...mapGetters({ theme: "getTheme" }),
+  },
+  watch: {
+    theme(newTheme) {
+      newTheme === "light"
+        ? document.querySelector("html").classList.remove("dark")
+        : document.querySelector("html").classList.add("dark");
+    },
   },
 };
 </script>

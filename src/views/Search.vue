@@ -3,15 +3,20 @@
     id="Search"
     class="h-screen w-3/4 flex flex-col justify-center items-center"
   >
-    <button @click="mines" class="absolute top-16 right-4 md:right-36">
-      <Icon icon="carbon:close-outline" color="#222" height="40" />
+    <button
+      @click="closePageSearch"
+      class="absolute top-16 right-4 md:right-36 text-gray-800 dark:text-yellow-300"
+    >
+      <Icon icon="carbon:close-outline" height="40" />
     </button>
 
-    <h1 class="text-center font-bold text-purple-900 text-2xl mb-8 text-text">
+    <h1
+      class="text-center font-bold text-purple-900 dark:text-yellow-300 text-2xl mb-8 text-text"
+    >
       جستجو در فرامس
     </h1>
     <input
-      class="h-12 rounded-2xl text-center mb-5 border-2 border-pink-400 outline-white"
+      class="h-12 rounded-2xl text-center mb-5 border-2 border-pink-400"
       type="text"
       placeholder="جستجو"
       v-model="search"
@@ -20,7 +25,7 @@
       class="px-12 py-1 block rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-white bg-yellow-500 hover:bg-green-500 focus:ring-blue-300"
       @click="searchByCategory"
     >
-      <Icon icon="akar-icons:search" color="white" class="" height="40" />
+      <Icon icon="akar-icons:search" color="white" height="40" />
     </button>
   </div>
 </template>
@@ -36,24 +41,24 @@ export default {
       search: "",
     };
   },
-  computed: {
-    allPosts() {
-      return this.$store.getters.allPosts;
-    },
-  },
+  // computed: {
+  //   allPosts() {
+  //     return this.$store.getters.allPosts;
+  //   },
+  // },
   methods: {
-    mines() {
+    closePageSearch() {
       this.$router.push({ path: "/" });
     },
-    searchByCategory() {
-      this.allPosts.filter((post) => {
-        console.log(post.category === this.search);
-      });
-    },
+    // searchByCategory() {
+    //   this.allPosts.filter((post) => {
+    //     console.log(post.category === this.search);
+    //   });
+    // },
   },
-  mounted() {
-    this.$store.dispatch("getPosts");
-  },
+  // mounted() {
+  //   this.$store.dispatch("getPosts");
+  // },
 };
 </script>
 

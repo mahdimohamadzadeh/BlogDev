@@ -2,13 +2,15 @@
   <div id="app" class="dark:bg-purple-800">
     <Navbar />
     <router-view class="container mx-auto px-4" />
+    <Footer />
   </div>
 </template>
 <script>
 import Navbar from "./components/Navbar.vue";
 import { mapGetters } from "vuex";
+import Footer from "./components/Footer.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Footer },
   name: "App",
   beforeMount() {
     this.$store.dispatch("initTheme");

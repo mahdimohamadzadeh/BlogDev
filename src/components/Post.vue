@@ -1,22 +1,25 @@
 <template>
-  <div class="p-4 md:w-1/2">
-    <div class="bg-white p-6 rounded-lg shadow-2xl">
+  <div class="py-3 w-full md:w-1/2 md:px-3 lg:w-1/3 xl:w-1/3 2xl:w-1/4">
+    <div class="rounded overflow-hidden shadow-lg border-2 border-gray-200">
       <img
-        class="lg:h-60 xl:h-56 md:h-64 sm:h-72 xs:h-72 h-72 rounded w-full object-cover object-center mb-6"
-        src="https://wisatamuda.com/wp-content/uploads/2019/02/1-Golden-Gate-Bridge-Gambar-dan-Foto-Tempat-Wisata-Terbaik-di-San-Fransisco-USA.jpg"
-        alt="Image Size 720x400"
+        class="w-full h-52"
+        :src="require('../assets/image/' + src)"
+        :alt="category"
       />
-      <h3
-        class="tracking-widest text-indigo-500 text-xs font-medium title-font"
-      >
-        {{ category }}
-      </h3>
-      <h2 class="text-lg text-gray-900 font-medium title-font mb-4">
-        {{ title }}
-      </h2>
-      <p class="leading-relaxed text-base">
-        {{ discreption }}
-      </p>
+      <div class="px-6 py-4">
+        پست شماره {{ id }}
+        <div class="font-bold text-xl mb-2">{{ category }}</div>
+        <p class="text-gray-700 text-base">
+          <!-- <Icon :icon="icon" /> -->
+          {{ title }}
+        </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-2"
+          >{{ date }}</span
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +27,7 @@
 <script>
 export default {
   name: "Post",
-  props: ["title", "discreption", "date", "url", "category"],
+  props: ["title", "discreption", "date", "src", "category", "id", "icon"],
 };
 </script>
 

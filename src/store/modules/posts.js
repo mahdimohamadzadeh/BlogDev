@@ -5,6 +5,13 @@ export default {
   },
   getters: {
     allPosts: (state) => state.posts,
+    getRandomPost: (state) => {
+      let posts = state.posts;
+      let randomItem = posts
+        .sort(() => Math.random() - Math.random())
+        .slice(0, 20);
+      return randomItem;
+    },
     getPostById: (state) => (id) => {
       return state.posts.find((post) => post.id === id);
     },

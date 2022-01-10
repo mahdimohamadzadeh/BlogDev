@@ -6,27 +6,31 @@
       :key="value.id"
       :title="value.title"
       :discreption="value.discreption"
-      :src="value.src"
       :date="value.date"
       :category="value.category"
       :id="value.id"
-      :icon="icon"
+      :theme="theme"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Post from "@/components/Post.vue";
 export default {
   components: { Post },
   name: "Home",
   computed: {
     posts() {
-      return this.$store.getters.getRandomPost;
+      let isSearch = this.$store.state.posts.isSearch;
+      let searchResult = this.$store.getters.AllowedValues;
+      if (isSearch) {
+        return this.$store.getters.getPostByCategory(searchResult);
+      } else {
+        return this.$store.getters.allPosts;
+      }
     },
-  },
-  created() {
-    this.$store.dispatch("getPosts");
+    ...mapGetters({ theme: "getTheme" }),
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div id="app" class="dark:bg-purple-800">
     <Navbar />
     <router-view class="container mx-auto px-4" />
-    <Footer />
+    <Footer class="dark:bg-purple-800" />
   </div>
 </template>
 <script>

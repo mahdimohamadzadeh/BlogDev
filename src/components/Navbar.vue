@@ -3,7 +3,7 @@
     <div
       class="fixed w-full md:w-4/5 flex h-14 bg-pink-300 dark:bg-purple-800 justify-between shadow-xl"
     >
-      <div class="right-nav flex items-center px-2 md:px-4">
+      <div class="right-nav flex items-center px-2 md:px-4" @click="homePage">
         <router-link v-if="theme == 'light'" to="/"
           ><img src="../assets/image/logo-normal.png" class="w-11 h-11"
         /></router-link>
@@ -18,12 +18,16 @@
       </div>
       <div class="pt-2 relative mx-auto hidden md:block">
         <input
+          v-model="searchInput"
           class="bg-white dark:bg-yellow-100 h-10 px-14 rounded-lg text-sm text-center lg:px-32 xl:px-44"
-          type="search"
-          name="search"
           placeholder="جستجو"
+          autocomplete="false"
         />
-        <button type="submit" class="absolute right-0 top-0 mt-5 lg:mt-4 mr-4">
+        <button
+          @click="search"
+          type="submit"
+          class="absolute right-0 top-0 mt-5 lg:mt-4 mr-4"
+        >
           <svg
             class="text-gray-600 h-4 w-4 lg:w-6 lg:h-6 fill-current text-text"
             xmlns="http://www.w3.org/2000/svg"
@@ -91,9 +95,14 @@ export default {
   data() {
     return {
       menu: false,
+      searchInput: "",
     };
   },
   methods: {
+    homePage() {
+      this.$store.state.posts.isSearch = false;
+      this.searchInput = "";
+    },
     goPageSearch() {
       this.$router.push({ path: "/search" });
       this.menu = false;
@@ -109,19 +118,14 @@ export default {
     activeDarkTheme() {
       this.$store.dispatch("toggleTheme");
     },
-  },
-  beforeMount() {
-    this.$store.dispatch("initTheme");
+    search() {
+      this.$store.state.posts.isSearch = true;
+      this.$store.state.posts.inputSerach = this.searchInput;
+      this.$store.getters.AllowedValues;
+    },
   },
   computed: {
     ...mapGetters({ theme: "getTheme" }),
-  },
-  watch: {
-    theme(newTheme) {
-      newTheme === "light"
-        ? document.querySelector("html").classList.remove("dark")
-        : document.querySelector("html").classList.add("dark");
-    },
   },
 };
 </script>

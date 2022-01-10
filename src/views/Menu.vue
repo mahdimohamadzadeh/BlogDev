@@ -56,7 +56,7 @@
       />
       <router-link
         to="/"
-        class="mr-3 text-purple-900 dark:text-yellow-200 dark:text-yellow-200 md:text-xl xl:text-3xl lg:text-2xl"
+        class="mr-3 text-purple-900 dark:text-yellow-200 md:text-xl xl:text-3xl lg:text-2xl"
         >درباره ما</router-link
       >
     </div>
@@ -90,14 +90,10 @@
 
 <script>
 import { Icon } from "@iconify/vue";
-import { mapGetters } from "vuex";
 export default {
   name: "Menu",
   components: {
     Icon,
-  },
-  computed: {
-    ...mapGetters({ theme: "getTheme" }),
   },
 };
 </script>

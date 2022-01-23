@@ -121,7 +121,27 @@ export default {
     search() {
       this.$store.state.posts.isSearch = true;
       this.$store.state.posts.inputSerach = this.searchInput;
-      this.$store.getters.AllowedValues;
+      let allowedValues = this.$store.getters.AllowedValues;
+      if (this.searchInput !== allowedValues) {
+        this.$store.state.posts.isSearch = false;
+        this.$swal({
+          title: "نتیجه یافت نشد",
+          type: "warning",
+          icon: "warning",
+          confirmButtonColor: "#ff0000",
+          confirmButtonText: "OK",
+        });
+      }
+      if (this.searchInput === "" || undefined) {
+        this.$store.state.posts.isSearch = false;
+        this.$swal({
+          title: "لطفا مقداری را وارد کنید",
+          type: "warning",
+          icon: "warning",
+          confirmButtonColor: "#ff0000",
+          confirmButtonText: "OK",
+        });
+      }
     },
   },
   computed: {

@@ -135,7 +135,7 @@ export default {
         discreption:
           "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
         date: "پنجشنبه, ۱۱ آذر ۱۴۰۰",
-        category: "vue,javascript",
+        category: "vue",
       },
       {
         id: 18,
@@ -163,12 +163,14 @@ export default {
       },
     ],
     isSearch: false,
+    canNotFindSearch: "",
     inputSerach: "",
+    isClickSearch: false,
   },
   getters: {
     allPosts: (state) => state.posts,
     AllowedValues: (state) => {
-      let search = state.inputSerach;
+      const search = state.inputSerach;
       const getCatgories = (posts) => {
         const allCategories = [];
         const map = {};
@@ -188,7 +190,7 @@ export default {
       const categories = getCatgories(state.posts);
 
       let filter = categories.filter((category) => category === search);
-      return filter;
+      return filter[0];
     },
     getRandomPost: (state) => {
       let posts = state.posts;

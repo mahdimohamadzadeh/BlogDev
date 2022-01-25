@@ -2,7 +2,7 @@
   <transition name="fade">
     <div
       id="pagetop"
-      class="fixed right-2 bottom-0"
+      class="fixed right-2 bottom-0 rounded-md cursor-pointer bg-dark-blue dark:bg-very-light-blue"
       v-show="scY > 300"
       @click="toTop"
     >
@@ -13,11 +13,10 @@
         height="48"
         viewBox="0 0 24 24"
         fill="none"
-        stroke="#4a5568"
+        :stroke="theme === 'dark' ? '#072227' : '#EEFBFC'"
         stroke-width="1"
         stroke-linecap="square"
         stroke-linejoin="arcs"
-        color="error"
       >
         <path d="M18 15l-6-6-6 6" />
       </svg>
@@ -26,6 +25,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "ScroollTop",
   data() {
@@ -52,6 +52,9 @@ export default {
         behavior: "smooth",
       });
     },
+  },
+  computed: {
+    ...mapGetters({ theme: "getTheme" }),
   },
 };
 </script>

@@ -1,18 +1,18 @@
 <template>
   <nav id="Navbar" class="flex md:justify-center overflow-hidden">
     <div
-      class="fixed w-full md:w-4/5 flex h-14 bg-very-light-blue dark:bg-purple-800 justify-between shadow-xl"
+      class="fixed w-full md:w-4/5 flex h-14 bg-very-light-blue rounded-b-xl border-r-2 border-l-2 border-b-2 border-very-light-blue dark:border-border dark:bg-dark-blue justify-between shadow-xl"
     >
       <div class="right-nav flex items-center px-2 md:px-4" @click="homePage">
         <router-link v-if="theme == 'light'" to="/"
           ><img src="../assets/image/logo-normal.png" class="w-11 h-11"
         /></router-link>
         <router-link v-if="theme == 'dark'" class="text-gray-100" to="/"
-          ><img src="../assets/image/iconSite.png" class="w-11 h-11"
+          ><img src="../assets/image/iconSite.png" class="w-11 h-11 opacity-90"
         /></router-link>
         <router-link
           to="/"
-          class="text-lg text-dark-blue dark:text-yellow-400 mr-2 md:text-xl md:mr-3"
+          class="text-lg text-dark-blue dark:text-border mr-2 md:text-xl md:mr-3"
           >فرامس</router-link
         >
       </div>
@@ -22,20 +22,20 @@
       >
         <button
           @click="goPageSearch"
-          class="md:hidden text-dark-blue dark:text-yellow-400"
+          class="md:hidden text-dark-blue dark:text-border"
         >
           <Icon icon="akar-icons:search" height="30" />
         </button>
         <button
           @click="activeDarkTheme"
-          class="text-dark-blue dark:text-yellow-400"
+          class="text-dark-blue dark:text-border"
         >
           <Icon icon="bytesize:moon" height="30" />
         </button>
         <button>
           <Icon
             :class="menu ? 'hidden' : 'block'"
-            class="text-dark-blue dark:text-yellow-400"
+            class="text-dark-blue dark:text-border"
             @click="goPageMenu"
             icon="feather:menu"
             height="30"
@@ -44,7 +44,7 @@
             @click="closeMenuPage"
             :class="menu ? 'block' : 'hidden'"
             icon="ant-design:close-outlined"
-            class="text-dark-blue dark:text-yellow-400"
+            class="text-dark-blue dark:text-border"
             height="35"
           />
         </button>

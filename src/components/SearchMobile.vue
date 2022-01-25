@@ -5,18 +5,18 @@
   >
     <button
       @click="closePageSearch"
-      class="absolute top-16 right-4 md:right-36 text-dark-blue dark:text-yellow-300"
+      class="absolute top-16 right-4 md:right-36 text-dark-blue dark:text-medium-blue"
     >
       <Icon icon="carbon:close-outline" height="40" />
     </button>
 
     <h1
-      class="text-center font-bold text-dark-blue dark:text-yellow-300 text-2xl mb-8 text-text"
+      class="text-center font-bold text-dark-blue dark:text-medium-blue text-2xl mb-8 text-text"
     >
       جستجو در فرامس
     </h1>
     <input
-      class="input bg-input input-info text-medium-blue placeholder-medium-blue h-12 rounded-2xl text-center mb-5 border-2 border-pink-400"
+      class="input bg-input input-info text-medium-blue placeholder-medium-blue dark:bg-light-blue dark:placeholder-main-background dark:text-main-background h-12 rounded-2xl text-center mb-5 border-2 border-pink-400"
       type="text"
       placeholder="جستجو"
       v-model="searchInput"
@@ -25,7 +25,11 @@
       class="px-12 py-1 block btn btn-accent rounded-md text-sm font-medium border-0 focus:outline-none focus:ring text-white"
       @click="search"
     >
-      <Icon icon="akar-icons:search" color="white" height="40" />
+      <Icon
+        icon="akar-icons:search"
+        class="dark:text-very-light-blue"
+        height="40"
+      />
     </button>
   </div>
 </template>

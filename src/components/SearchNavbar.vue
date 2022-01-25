@@ -4,15 +4,15 @@
       v-model="searchInput"
       type="text"
       placeholder="جستجو"
-      class="input text-medium-blue placeholder-medium-blue lg:px-32 xl:px-44 h-10 text-sm text-center px-14 bg-input input-info"
+      class="input text-medium-blue placeholder-medium-blue lg:px-32 xl:px-44 h-10 text-sm text-center px-14 bg-input dark:bg-light-blue dark:placeholder-main-background dark:text-main-background input-info"
     />
     <button
       @click="search"
       type="submit"
-      class="absolute right-0 top-4 lg:top-4 mr-4 border-l-2 border-medium-blue pl-2"
+      class="absolute right-0 top-4 lg:top-4 mr-4 border-l-2 border-medium-blue dark:border-very-light-blue pl-2"
     >
       <svg
-        class="text-dark-blue h-5 w-5 lg:w-6 lg:h-6 fill-current"
+        class="text-dark-blue dark:text-very-light-blue h-5 w-5 lg:w-6 lg:h-6 fill-current"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         version="1.1"

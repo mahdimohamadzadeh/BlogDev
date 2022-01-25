@@ -8,6 +8,7 @@ module.exports = {
       "medium-blue": "#35858B",
       "dark-blue": "#072227",
       "main-background": "#EEFBFC",
+      border: "#0C9DA8",
       input: "#D3F6FA",
       info: "#2094f3",
       success: "#009485",

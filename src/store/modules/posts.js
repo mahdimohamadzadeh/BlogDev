@@ -162,36 +162,9 @@ export default {
         category: "vue",
       },
     ],
-    isSearch: false,
-    canNotFindSearch: "",
-    inputSerach: "",
-    isClickSearch: false,
   },
   getters: {
     allPosts: (state) => state.posts,
-    AllowedValues: (state) => {
-      const search = state.inputSerach;
-      const getCatgories = (posts) => {
-        const allCategories = [];
-        const map = {};
-
-        for (const post of posts) {
-          const categories = post.category.split(",");
-
-          categories.forEach((category) => {
-            if (map[category]) return;
-
-            map[category] = true;
-            allCategories.push(category);
-          });
-        }
-        return allCategories;
-      };
-      const categories = getCatgories(state.posts);
-
-      let filter = categories.filter((category) => category === search);
-      return filter[0];
-    },
     getRandomPost: (state) => {
       let posts = state.posts;
       let randomItem = posts

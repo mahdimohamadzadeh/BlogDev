@@ -22,15 +22,15 @@ export default {
   name: "Home",
   computed: {
     posts() {
-      let isSearch = this.$store.state.posts.isSearch;
-      let searchResult = this.$store.getters.AllowedValues;
+      let isSearch = this.$store.state.search.isSearch;
       if (isSearch) {
-        return this.$store.getters.getPostByCategory(searchResult);
+        return this.getPostByCategory(this.allowedValues);
       } else {
-        return this.$store.getters.allPosts;
+        return this.allPosts;
       }
     },
     ...mapGetters({ theme: "getTheme" }),
+    ...mapGetters(["allowedValues", "getPostByCategory", "allPosts"]),
   },
 };
 </script>

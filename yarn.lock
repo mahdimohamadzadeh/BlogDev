@@ -3600,6 +3600,11 @@
   "resolved" "https://registry.npmjs.org/cyclist/-/cyclist-1.0.1.tgz"
   "version" "1.0.1"
 
+"daisyui@^1.25.4":
+  "integrity" "sha512-Y9DrFYjjfwK09Fc8/05DhpWgwqhqRuhuH4gMdQxCeZ9dLJ82y5xb6kvwLuK1cWLfCckDOWk3reEKXsciaMHyAw=="
+  "resolved" "https://registry.npmjs.org/daisyui/-/daisyui-1.25.4.tgz"
+  "version" "1.25.4"
+
 "dashdash@^1.12.0":
   "integrity" "sha1-hTz6D3y+L+1d4gMmuN1YEDX24vA="
   "resolved" "https://registry.npmjs.org/dashdash/-/dashdash-1.14.1.tgz"

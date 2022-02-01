@@ -1,0 +1,32 @@
+.hvr-icon-up {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.4s;
+    transition-property: transform;
+}
+
+.hvr-icon-up:hover,
+.hvr-icon-up:focus,
+.hvr-icon-up:active {
+    transform: scale(2.20);
+}
+.hvr-icon-grow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.4s;
+    transition-property: transform;
+}
+
+.hvr-icon-grow:hover,
+.hvr-icon-grow:focus,
+.hvr-icon-grow:active {
+    transform: scale(1.20);
+}

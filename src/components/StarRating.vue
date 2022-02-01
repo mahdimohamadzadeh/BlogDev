@@ -1,11 +1,33 @@
 <template>
-  <div>hello</div>
+  <div>
+    <star-rating
+      :read-only="true"
+      :rating="rate"
+      :increment="0.5"
+      :show-rating="true"
+      text-class="text-dark-blue text-xl"
+      :rtl="true"
+      :clearable="true"
+      :star-size="25"
+      inactive-color="#DAF7F1"
+      border-color="#08786E"
+      :border-width="1"
+      :glow="5"
+      glow-color="#DAF7F1"
+    ></star-rating>
+  </div>
 </template>
 
 <script>
+import StarRating from "vue-star-rating";
 export default {
-  name: "StarRating",
+  props: ["idPost", "rate"],
+  components: {
+    StarRating,
+  },
+  data() {
+    return {};
+  },
+  methods: {},
 };
 </script>
-
-<style lang="scss" scoped></style>

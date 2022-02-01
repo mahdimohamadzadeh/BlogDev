@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
-@import url(./assets/font.css);
+@import url("./assets/css/font.css");
+@import url("./assets/css/hover.css");
+.sr-only[data-v-f675a548] {
+    left: 0 ;
+}
 
 html {
     @apply font-body  ;

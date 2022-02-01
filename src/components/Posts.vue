@@ -4,25 +4,25 @@
       class="rounded overflow-hidden shadow-2xl border-2 dark:border-light-blue border-gray-200"
     >
       <img
-        v-if="theme === 'dark' && category === 'javascript'"
+        v-if="theme === 'dark' && category === 'جاوا اسکریپت'"
         class="rounded-xl px-4 pt-4 w-full h-52"
         src="../assets/image/JavaScript-dark-yellow.png"
         :alt="category"
       />
       <img
-        v-if="theme === 'dark' && category === 'vue'"
+        v-if="theme === 'dark' && category === ' ویو جی اس'"
         class="rounded-xl px-4 pt-4 w-full h-52"
         src="../assets/image/vue-yellow.png"
         :alt="category"
       />
       <img
-        v-if="theme === 'light' && category === 'vue'"
+        v-if="theme === 'light' && category === ' ویو جی اس'"
         class="rounded-xl px-4 pt-4 w-full h-52"
         src="../assets/image/vue.png"
         :alt="category"
       />
       <img
-        v-if="theme === 'light' && category === 'javascript'"
+        v-if="theme === 'light' && category === 'جاوا اسکریپت'"
         class="rounded-xl px-4 pt-4 w-full h-52"
         src="../assets/image/JavaScript.png"
         :alt="category"
@@ -49,30 +49,35 @@
         </p>
       </div>
       <div class="justify-center card-actions">
-        <button
-          class="btn btn-outline btn-accent hover:scale-125 transition duration-300 transform"
-        >
-          مشاهده پست
-        </button>
+        <router-link :to="`/post/${id}`"
+          ><button
+            class="btn btn-outline btn-accent hover:scale-125 transition duration-300 transform"
+          >
+            مشاهده پست
+          </button>
+        </router-link>
       </div>
-      <div class="px-6 pt-4 pb-2">
+      <div class="flex justify-between w-full items-center mb-6 mt-8">
         <span
-          class="inline-block text-medium-blue dark:text-very-light-blue dark:text-white dark:text-opacity-90 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mb-2"
+          class="mr-4 inline-block text-medium-blue dark:text-very-light-blue dark:text-white dark:text-opacity-90 rounded-full text-sm font-semibold text-gray-700"
           >{{ date }}</span
         >
+        <Star-rating :rate="4.5" class="w-1/2 mb-1" />
       </div>
     </div>
   </div>
 </template>
 <script>
+import StarRating from "./StarRating.vue";
 import { Icon } from "@iconify/vue";
 import ScrollTop from "./ScrollTop.vue";
 export default {
-  name: "Post",
+  name: "Posts",
   props: ["title", "discreption", "date", "src", "category", "id", "theme"],
   components: {
     Icon,
     ScrollTop,
+    StarRating,
   },
 };
 </script>

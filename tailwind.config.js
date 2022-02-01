@@ -10,6 +10,8 @@ module.exports = {
       "main-background": "#EEFBFC",
       border: "#0C9DA8",
       input: "#D3F6FA",
+      heart: "#FF0000",
+      comment: "#F1DC00 ",
       info: "#2094f3",
       success: "#009485",
       warning: "#ff9900",

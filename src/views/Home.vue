@@ -1,14 +1,14 @@
 <template>
-  <div class="Home mt-14">
-    <Post
+  <div class="Home">
+    <Posts
       class="inline-flex"
-      v-for="value in posts"
-      :key="value.id"
-      :title="value.title"
-      :discreption="value.discreption"
-      :date="value.date"
-      :category="value.category"
-      :id="value.id"
+      v-for="post in posts"
+      :key="post.id"
+      :title="post.title"
+      :discreption="post.discreption"
+      :date="post.date"
+      :category="post.categories"
+      :id="post.id"
       :theme="theme"
     />
   </div>
@@ -16,10 +16,13 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Post from "@/components/Post.vue";
+import Posts from "@/components/Posts.vue";
 export default {
-  components: { Post },
+  components: { Posts },
   name: "Home",
+  mounted() {
+    this.$store.dispatch("getPosts");
+  },
   computed: {
     posts() {
       let isSearch = this.$store.state.search.isSearch;

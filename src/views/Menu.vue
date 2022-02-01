@@ -1,6 +1,6 @@
 <template>
   <div class="Menu h-screen flex flex-col justify-around items-start w-5/6">
-    <div class="flex mt-16">
+    <div class="flex">
       <Icon
         icon="fontisto:angle-left"
         class="text-medium-blue dark:text-very-light-blue"
@@ -19,7 +19,7 @@
         height="30"
       />
       <router-link
-        to="/"
+        to="/newposts"
         class="mr-3 text-dark-blue dark:text-very-light-blue md:text-xl xl:text-3xl lg:text-2xl"
         >جدید ترین ها</router-link
       >

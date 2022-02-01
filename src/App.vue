@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="dark:bg-dark-blue">
-    <Navbar />
+    <Navbar class="mb-20" />
     <router-view class="container mx-auto px-4" />
-    <Footer class="" />
+    <Footer class="mt-20" />
   </div>
 </template>
 <script>

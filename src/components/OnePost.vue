@@ -1,38 +1,38 @@
 <template>
-  <div
-    class="w-3/5 mx-auto rounded-xl bg-input shadow-2xl flex items-center flex-col"
-  >
-    <div class="top_card w-full flex mt-2">
-      <h1 class="text-3xl self-start my-4 mr-2 text-dark-blue">
+  <div class="flex flex-col rounded-xl bg-input shadow-2xl md:mx-10 xl:mx-40">
+    <div class="text-xl md:text-3xl xl:text-4xl md:m-8 m-4">
+      <h1 class="text-dark-blue">
         {{ title }}
       </h1>
     </div>
-    <div class="self-start flex mt-5 gap-3">
+    <div class="self-start mr-2 flex my-5 gap-3 md:mt-1 md:mr-4 xl:mr-8">
       <span
-        class="border-l-2 pl-3 border-dark-blue text-xl self-start mr-2 text-dark-blue"
+        class="border-l-2 pl-3 mt-1 border-dark-blue text-lg self-start mr-2 text-dark-blue md:text-xl xl:text-2xl"
       >
-        {{ isLike }}
+        {{ date }}
       </span>
       <Icon
         icon="akar-icons:comment"
-        class="text-dark-blue cursor-pointer hvr-icon-grow"
+        class="text-dark-blue cursor-pointer hvr-icon-grow xl:mt-1"
         height="30"
       />
-      <span class="text-dark-blue text-lg mt-1">6</span>
     </div>
     <img
-      class="rounded-2xl mt-5 h-80 w-5/6"
-      src="../assets/image/vue.png"
-      alt=""
+      class="rounded-2xl mt-5 h-56 w-full px-2 self-center md:px-14 md:h-60 xl:w-11/12 xl:h-80 "
+      :src="img"
+      :alt="category"
     />
-    <h2 class="text-xl self-start my-4 mr-2 text-dark-blue">
-      {{ category }}
-    </h2>
-    <p class="text-l text-dark-blue leading-8 text-justify p-3">
+    <p class="text-lg text-dark-blue leading-8 text-justify p-4 xl:leading-10 xl:p-8">
       {{ discreption }}
     </p>
-    <div class="Icon flex w-1/3 justify-around my-10" @click="like">
-      <span>like</span>
+    <div class="Icon flex self-center flex-row w-1/4 my-10 items-center justify-around md:w-2/12 md:px-4 md:justify-around xl:px-10">
+      <Icon
+        @click="$emit('incrementLike')"
+        icon="ant-design:heart-filled"
+        class="hvr-icon-up text-heart cursor-pointer"
+        width="48px"
+      />
+      <span class="text-dark-blue text-xl">{{ like }}</span>
     </div>
   </div>
 </template>
@@ -41,18 +41,19 @@
 import { Icon } from "@iconify/vue";
 export default {
   name: "OnePost",
-  props: ["id", "title", "discreption", "date", "category"],
+  props: ["id", "title", "discreption", "date", "category", "like", "url"],
   components: {
     Icon,
   },
   data() {
     return {
       isLike: false,
+      img: "http://localhost:3000/src/assets/image/" + this.url,
     };
   },
   methods: {
-    like() {
-      this.isLike = true;
+    islike() {
+      this.isLike = !this.isLike;
     },
   },
 };

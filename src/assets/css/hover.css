@@ -12,7 +12,7 @@
 .hvr-icon-up:hover,
 .hvr-icon-up:focus,
 .hvr-icon-up:active {
-    transform: scale(2.20);
+    transform: scale(1.15);
 }
 .hvr-icon-grow {
     display: inline-block;

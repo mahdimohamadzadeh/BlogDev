@@ -1,12 +1,16 @@
-import { createRouter, createWebHistory } from "vue-router";
+import {
+  createRouter,
+  createWebHistory
+} from "vue-router";
 import Home from "../views/Home.vue";
 import Search from "../views/Search.vue";
 import Menu from "../views/Menu.vue";
 import NewPosts from "../views/NewPosts.vue";
 import Post from "../views/Post.vue";
+import AddPost from "../views/Post.vue";
+import Edit from "../views/Post.vue";
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
     component: Home,
@@ -28,13 +32,23 @@ const routes = [
   },
   {
     path: "/post/:id",
-    name: "post",
+    name: "Post",
     component: Post,
+  },
+  {
+    path: "/edit",
+    name: "Edit",
+    component: Edit,
+  },
+  {
+    path: "/add-post",
+    name: "AddPost",
+    component: AddPost,
   },
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 

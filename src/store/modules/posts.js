@@ -1,4 +1,5 @@
 import axios from "axios";
+const api = 'http://127.0.0.1:8000/api'
 export default {
   state: {
     posts: [],
@@ -8,7 +9,7 @@ export default {
     allPosts: (state) => state.posts,
     allNewPosts: (state) => state.newPosts,
     getPostById: (state) => (id) => {
-      return state.posts.find((post) => post.id === id);
+      return state.posts.filter((post) => post.id === id);
     },
     getPostByCategory: (state) => (category) => {
       return state.posts.filter((post) => post.category == category);
@@ -17,13 +18,13 @@ export default {
   actions: {
     async getPosts({ commit }) {
       await axios
-        .get("http://127.0.0.1:8000/api/randomPosts")
+        .get(`${api}/randomPosts`)
         .then((res) => commit("SET_POSTS", res.data))
         .catch((error) => console.log(error));
     },
     async getNewPosts({ commit }) {
       await axios
-        .get("http://127.0.0.1:8000/api/newPosts")
+        .get(`${api}/newProduct`)
         .then((res) => commit("SET_NEW_POSTS", res.data))
         .catch((error) => console.log(error));
     },

@@ -4,12 +4,11 @@
       class="rounded overflow-hidden shadow-2xl border-2 dark:border-light-blue border-gray-200"
     >
       <img
-        v-if="theme === 'dark' && category === 'جاوا اسکریپت'"
         class="rounded-xl px-4 pt-4 w-full h-52"
-        src="../assets/image/JavaScript-dark-yellow.png"
+        :src="img"
         :alt="category"
       />
-      <img
+      <!-- <img
         v-if="theme === 'dark' && category === ' ویو جی اس'"
         class="rounded-xl px-4 pt-4 w-full h-52"
         src="../assets/image/vue-yellow.png"
@@ -26,7 +25,7 @@
         class="rounded-xl px-4 pt-4 w-full h-52"
         src="../assets/image/JavaScript.png"
         :alt="category"
-      />
+      /> -->
       <Scroll-top />
       <div class="px-6 py-4">
         <div class="flex">
@@ -39,13 +38,13 @@
           <h2
             class="font-bold text-dark-blue dark:text-very-light-blue text-xl mb-2"
           >
-            {{ category }}
+            {{ title }}
           </h2>
         </div>
         <p
           class="text-medium-blue text-gray-700 text-base dark:text-very-light-blue dark:text-opacity-90"
         >
-          {{ title }}
+          {{ category }}
         </p>
       </div>
       <div class="justify-center card-actions">
@@ -57,12 +56,12 @@
           </button>
         </router-link>
       </div>
-      <div class="flex justify-between w-full items-center mb-6 mt-8">
+      <div class="flex flex-col h-28 lg:flex-row lg:justify-between lg:h-14 justify-around items-center mb-6 mt-8">
         <span
-          class="mr-4 inline-block text-medium-blue dark:text-very-light-blue dark:text-white dark:text-opacity-90 rounded-full text-sm font-semibold text-gray-700"
+          class="mr-4 text-xl xl:text-xl lg:text-sm text-medium-blue dark:text-very-light-blue dark:text-white dark:text-opacity-90 rounded-full font-semibold text-gray-700"
           >{{ date }}</span
         >
-        <Star-rating :rate="4.5" class="w-1/2 mb-1" />
+        <Star-rating :rate="4.5" />
       </div>
     </div>
   </div>
@@ -73,7 +72,37 @@ import { Icon } from "@iconify/vue";
 import ScrollTop from "./ScrollTop.vue";
 export default {
   name: "Posts",
-  props: ["title", "discreption", "date", "src", "category", "id", "theme"],
+  props: {
+    title: {
+      type: String,
+      default: "",
+    },
+    date: {
+      type: [String, Number],
+      default: "",
+    },
+    url: {
+      type: String,
+      default: "",
+    },
+    category: {
+      type: String,
+      default: "",
+    },
+    id: {
+      type: [Number],
+      default: "",
+    },
+    theme: {
+      type: String,
+      default: "",
+    },
+  },
+  data() {
+    return {
+      img: "http://localhost:3000/src/assets/image/" + this.url,
+    };
+  },
   components: {
     Icon,
     ScrollTop,

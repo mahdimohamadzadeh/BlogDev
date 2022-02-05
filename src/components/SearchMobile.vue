@@ -38,7 +38,6 @@
 import { Icon } from "@iconify/vue";
 import { mapGetters, mapMutations } from "vuex";
 export default {
-  name: "SearchMobile",
   components: {
     Icon,
   },

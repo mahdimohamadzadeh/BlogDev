@@ -5,10 +5,10 @@
       v-for="post in posts"
       :key="post.id"
       :title="post.title"
-      :discreption="post.discreption"
       :date="post.date"
       :category="post.categories"
       :id="post.id"
+      :url="post.image_url"
       :theme="theme"
     />
   </div>

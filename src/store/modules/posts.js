@@ -4,6 +4,7 @@ export default {
   state: {
     posts: [],
     newPosts: [],
+    isLoading: true
   },
   getters: {
     allPosts: (state) => state.posts,
@@ -16,16 +17,31 @@ export default {
     },
   },
   actions: {
-    async getPosts({ commit }) {
+    async getPosts({
+      commit,
+      state
+    }) {
       await axios
         .get(`${api}/randomPosts`)
-        .then((res) => commit("SET_POSTS", res.data))
-        .catch((error) => console.log(error));
+        .then((res) => {
+          state.isLoading = false
+          commit("SET_POSTS", res.data)
+        })
+        .catch((error) => {
+          state.loading = false
+          alert(error)
+        });
     },
-    async getNewPosts({ commit }) {
+    async getNewPosts({
+      commit,
+      state
+    }) {
       await axios
         .get(`${api}/newProduct`)
-        .then((res) => commit("SET_NEW_POSTS", res.data))
+        .then((res) => {
+          state.isLoading = false
+          commit("SET_NEW_POSTS", res.data)
+        })
         .catch((error) => console.log(error));
     },
     async removePost(postId) {
@@ -39,8 +55,14 @@ export default {
         .catch((error) => console.log(error));
     },
     async addPost(post) {
+      console.log(post);
       await axios
-        .post("http://127.0.0.1:8000/api/randomPosts/", post)
+        .post("http://127.0.0.1:8000/api/post", {
+          'title': post.title,
+          'description': post.description,
+          'categories': post.categories,
+          'image_url': post.url,
+        })
         .then((res) => {
           if (res.status == "ok") {
             alert("پست با موفقیت اضافه شد");
@@ -48,9 +70,19 @@ export default {
         })
         .catch((error) => console.log(error));
     },
-    async editPost(post, postId) {
-      await axios
-        .put(`http://localhost:4000/posts/${postId}`, post)
+    async editPost(post) {
+      // console.log(id);
+      console.log(post);
+      await axios({
+          method: 'put',
+          url: `http://127.0.0.1:8000/post/${post.id}`,
+          data: {
+            title: post.title,
+            description: post.description,
+            categories: post.categories,
+            image_url: post.url,
+          }
+        })
         .then((res) => {
           if (res.status == "ok") {
             alert("پست با موفقیت ویرایش شد");

@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="dark:bg-dark-blue">
-    <Navbar class="mb-20" />
-    <router-view class="container mx-auto px-4" />
-    <Footer class="mt-20" />
+  <div  id="app" class="dark:bg-dark-blue">
+    <Navbar class="mb-20" v-if="!this.$store.state.posts.isLoading" />
+    <router-view  class="container mx-auto px-4" />
+    <Footer class="mt-20" v-if="!this.$store.state.posts.isLoading" />
   </div>
 </template>
 <script>
@@ -44,14 +44,15 @@ body {
   background-color: rgb(250, 246, 241);
 }
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background-color: rgb(94, 255, 134);
+  background-color: #73f1b9;
+  border-radius: 50px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(221, 255, 27);
-  border-radius: 15px;
+  background-color: #514b71;
+  border-radius: 50px;
 }
 :root {
   scrollbar-color: rgb(255, 255, 255) rgb(94, 255, 134) !important ;

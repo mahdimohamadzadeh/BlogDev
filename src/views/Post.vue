@@ -1,30 +1,47 @@
 <template>
   <div>
-    <OnePost
-      v-for="object in post"
-      :key="object.id"
-      :id="object.id"
-      :title="object.title"
-      :discreption="object.description"
-      :date="object.date"
-      :category="object.categories"
-      :like="object.like"
-      :url="object.image_url"
-      @incrementLike="incrementLike"
+    <div class="onePost" v-if="!edit">
+      <OnePost
+        v-for="object in post"
+        :key="object.id"
+        :id="object.id"
+        :title="object.title"
+        :discreption="object.description"
+        :date="object.date"
+        :category="object.categories"
+        :like="object.like"
+        :url="object.image_url"
+        @incrementLike="incrementLike"
+        @showEdit="showEdit"
+      />
+    </div>
+    <FormPost
+      @closeForm="closeForm"
+      @sendPostById="sendPostById"
+      v-if="edit"
+      btn-text="ویرایش"
+      header-text="ادیت پست"
     />
   </div>
 </template>
 
 <script>
 import OnePost from "@/components/OnePost.vue";
+import FormPost from "../components/FormPost.vue";
 export default {
-  components: { OnePost },
+  components: { OnePost, FormPost },
   name: "Post",
   data() {
-    return {};
+    return {
+      edit: false,
+    };
   },
   mounted() {
     this.$store.dispatch("getPosts");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   },
   computed: {
     post() {
@@ -34,10 +51,16 @@ export default {
     },
   },
   methods: {
-    incrementLike(){
-      
-    }
-  }
+    sendPostById(post) {
+      this.$store.dispatch("editPost", post);
+    },
+    showEdit() {
+      this.edit = true;
+    },
+    closeForm() {
+      this.edit = false;
+    },
+  },
 };
 </script>
 

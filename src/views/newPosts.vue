@@ -1,4 +1,5 @@
 <template>
+  <Loading class="absolute top-0" />
   <div>
     <h1
       class="border-b-2 w-2/3 dark:text-very-light-blue mx-auto pb-2 border-border text-center text-dark-blue text-2xl"
@@ -15,7 +16,7 @@
       :category="post.categories"
       :id="post.id"
       :theme="theme"
-      src="../assets/image/"
+      :url="post.image_url"
     />
   </div>
 </template>
@@ -23,11 +24,19 @@
 <script>
 import { mapGetters } from "vuex";
 import Posts from "@/components/Posts.vue";
+import Loading from "../components/Loading.vue";
 export default {
-  components: { Posts },
+  components: { Posts, Loading },
   name: "NewPosts",
+  beforeMount() {
+    setTimeout(() => {
+      this.$store.state.posts.isLoading = true;
+    }, 100);
+  },
   mounted() {
-    this.$store.dispatch("getNewPosts");
+    setTimeout(() => {
+      this.$store.dispatch("getNewPosts");
+    }, 200);
   },
 
   computed: {

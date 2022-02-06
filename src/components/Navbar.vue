@@ -5,10 +5,10 @@
     >
       <div class="right-nav flex items-center px-2 md:px-4" @click="homePage">
         <router-link v-if="theme == 'light'" to="/"
-          ><img src="../assets/image/logo-normal.png" class="w-11 h-11"
+          ><img src="../assets/image/logo-normal.png" alt="mainIcon" class="w-11 h-11"
         /></router-link>
         <router-link v-if="theme == 'dark'" class="text-gray-100" to="/"
-          ><img src="../assets/image/iconSite.png" class="w-11 h-11 opacity-90"
+          ><img src="../assets/image/iconSite.png" alt="mainIcon" class="w-11 h-11 opacity-90"
         /></router-link>
         <router-link
           to="/"

@@ -1,5 +1,6 @@
 <template>
   <div class="Home">
+    <Loading/>
     <Posts
       class="inline-flex"
       v-for="post in posts"
@@ -17,11 +18,21 @@
 <script>
 import { mapGetters } from "vuex";
 import Posts from "@/components/Posts.vue";
+import Loading from "../components/Loading.vue";
 export default {
-  components: { Posts },
+  components: { Posts, Loading },
   name: "Home",
+  beforeMount() {
+    setTimeout(() => {
+      this.$store.state.posts.isLoading = true;
+    }, 100);
+  },
   mounted() {
     this.$store.dispatch("getPosts");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   },
   computed: {
     posts() {

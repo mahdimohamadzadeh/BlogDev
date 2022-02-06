@@ -1,15 +1,19 @@
 <template>
-    <div>
-
-    </div>
+  <div>
+    <FormPost @sendPost="sendPost" btnText="پست"  header-text="اضافه کردن پست"/>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
+import FormPost from "../components/FormPost.vue";
+export default {
+  components: { FormPost },
+  methods: {
+    sendPost(post) {
+      this.$store.dispatch("addPost", post);
+    },
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

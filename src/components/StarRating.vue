@@ -25,9 +25,5 @@ export default {
   components: {
     StarRating,
   },
-  data() {
-    return {};
-  },
-  methods: {},
 };
 </script>

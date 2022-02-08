@@ -30,6 +30,7 @@ import OnePost from "@/components/OnePost.vue";
 import FormPost from "../components/FormPost.vue";
 export default {
   components: { OnePost, FormPost },
+  emits:['sendPostById'],
   name: "Post",
   data() {
     return {

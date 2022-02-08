@@ -16,23 +16,23 @@
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import { useRouter } from "vue-router";
 
 export default {
-  data() {
-    return {
-      fullPage: true,
-    };
-  },
   components: {
     Loading,
   },
-  methods: {
-    onCancel() {
-      this.$router.push({ path: "/" });
+  setup() {
+    const fullPage = ref(true);
+    const router = useRouter();
+    const onCancel = () => {
+      router.push({ path: "/" });
       this.$store.state.posts.isLoading = false;
-    },
+    };
+    return { fullPage, onCancel };
   },
 };
 </script>

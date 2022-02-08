@@ -56,7 +56,9 @@
           </button>
         </router-link>
       </div>
-      <div class="flex flex-col h-28 lg:flex-row lg:justify-between lg:h-14 justify-around items-center mb-6 mt-8">
+      <div
+        class="flex flex-col h-28 lg:flex-row lg:justify-between lg:h-14 justify-around items-center mb-6 mt-8"
+      >
         <span
           class="mr-4 text-xl xl:text-xl lg:text-sm text-medium-blue dark:text-very-light-blue dark:text-white dark:text-opacity-90 rounded-full font-semibold text-gray-700"
           >{{ date }}</span
@@ -70,8 +72,14 @@
 import StarRating from "./StarRating.vue";
 import { Icon } from "@iconify/vue";
 import ScrollTop from "./ScrollTop.vue";
+import { ref } from "@vue/reactivity";
 export default {
   name: "Posts",
+  components: {
+    Icon,
+    ScrollTop,
+    StarRating,
+  },
   props: {
     title: {
       type: String,
@@ -98,15 +106,10 @@ export default {
       default: "",
     },
   },
-  data() {
-    return {
-      img: "http://localhost:3000/src/assets/image/" + this.url,
-    };
-  },
-  components: {
-    Icon,
-    ScrollTop,
-    StarRating,
+  setup(props) {
+    const img = ref("http://localhost:3000/src/assets/image/" + props.url);
+
+    return { img };
   },
 };
 </script>

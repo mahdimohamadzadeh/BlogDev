@@ -7,7 +7,8 @@
     "build": "vite build",
     "serve": "vite preview",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src"
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore --fix src",
+    "build:stats": "wp --mode production --json > stats.json"
   },
   "dependencies": {
     "axios": "^0.24.0",

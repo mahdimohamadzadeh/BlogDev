@@ -121,39 +121,41 @@
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
+import { useRoute } from "vue-router";
+import { onMounted } from "@vue/runtime-core";
 export default {
   props: ["btnText", "headerText"],
-  data() {
-    return {
-      post: {
-        category: "",
-        title: "",
-        description: "",
-        url: "",
-      },
-      post: {
-        category: "",
-        title: "",
-        description: "",
-        url: "",
-        id: +this.$route.params.id,
-      },
-    };
-  },
-  methods: {
-    setpost() {
-      this.$emit("sendPost", this.post);
-      this.$emit("sendPostById", this.post);
-    },
-    previewFiles(event) {
-      this.post.url = event.target.files[0].name;
-    },
-  },
-  mounted() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+  setup(props, { emit }) {
+    onMounted(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     });
+    const route = useRoute();
+    const post = ref({
+      category: "",
+      title: "",
+      description: "",
+      url: "",
+    });
+    const postWithId = ref({
+      category: post.value.category,
+      title: post.value.title,
+      description: post.value.description,
+      url: post.value.url,
+      id: route.params.id,
+    });
+    const setpost = () => {
+      emit("sendPost", post.value);
+      emit("sendPostById", postWithId.value);
+    };
+    const previewFiles = (event) => {
+      post.value.url = event.target.files[0].name;
+    };
+
+    return { post, postWithId, setpost, previewFiles };
   },
 };
 </script>

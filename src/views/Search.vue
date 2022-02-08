@@ -1,16 +1,14 @@
 <template>
   <div id="Search">
-    <search-mobile />
+    <SearchMobile/>
   </div>
 </template>
 
 <script>
-import SearchMobile from "@/components/SearchMobile.vue";
+import SearchMobile from "../components/SearchMobile.vue";
 export default {
-  name: "Search",
-  component: {
-    SearchMobile,
-  },
+    name: "Search",
+    components: { SearchMobile }
 };
 </script>
 

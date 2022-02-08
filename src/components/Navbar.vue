@@ -3,18 +3,24 @@
     <div
       class="fixed w-full md:w-4/5 flex h-14 bg-very-light-blue rounded-b-xl border-r-2 border-l-2 border-b-2 border-very-light-blue dark:border-border dark:bg-dark-blue justify-between shadow-xl"
     >
-      <div class="right-nav flex items-center px-2 md:px-4" @click="homePage">
-        <router-link v-if="theme == 'light'" to="/"
-          ><img src="../assets/image/logo-normal.png" alt="mainIcon" class="w-11 h-11"
-        /></router-link>
-        <router-link v-if="theme == 'dark'" class="text-gray-100" to="/"
-          ><img src="../assets/image/iconSite.png" alt="mainIcon" class="w-11 h-11 opacity-90"
-        /></router-link>
-        <router-link
-          to="/"
+      <div class="right-nav flex cursor-pointer items-center px-2 md:px-4" @click="homePage">
+        <img
+          v-if="theme == 'light'"
+          src="../assets/image/logo-normal.png"
+          alt="mainIcon"
+          class="w-11 h-11"
+        />
+        <img
+          v-if="theme == 'dark'"
+          src="../assets/image/iconSite.png"
+          alt="mainIcon"
+          class="w-11 h-11 opacity-90"
+        />
+        <h1
           class="text-lg text-dark-blue dark:text-border mr-2 md:text-xl md:mr-3"
-          >فرامس</router-link
         >
+          فرامس
+        </h1>
       </div>
       <Search-navbar />
       <div
@@ -35,7 +41,7 @@
         <button>
           <Icon
             :class="menu ? 'hidden' : 'block'"
-            class="text-dark-blue dark:text-border"
+            class="text-dark-blue md:hidden dark:text-border"
             @click="goPageMenu"
             icon="feather:menu"
             height="30"
@@ -55,73 +61,53 @@
 
 <script>
 import { Icon } from "@iconify/vue";
-import { mapGetters, mapMutations } from "vuex";
+import { useStore } from "vuex";
 import SearchNavbar from "./SearchNavbar.vue";
+import { computed, reactive, ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
 export default {
   name: "Navbar",
   components: {
     Icon,
     SearchNavbar,
   },
-  data() {
-    return {
-      menu: false,
+  setup() {
+    const router = useRouter();
+    const store = useStore();
+    const menu = ref(false);
+    const isSearch = ref(store.state.search.isSearch);
+    const theme = computed(() => store.getters.getTheme);
+    const homePage = () => {
+      isSearch.value = false;
+      router.push({ path: "/" });
     };
-  },
-  methods: {
-    ...mapMutations({
-      isSearch: "CHANGE_STATE_ISSEARCH",
-      inputSearch: "CHANGE_STATE_INPUTSEARCH",
-    }),
-    homePage() {
-      this.isSearch(false);
-      this.searchInput = "";
-    },
-    goPageSearch() {
-      this.$router.push({ path: "/search" });
+    const goPageSearch = () => {
+      router.push({ path: "/search" });
       window.scrollTo(0, 0);
-      this.menu = false;
-    },
-    goPageMenu() {
-      this.$router.push({ path: "/menu" });
+      menu.value = false;
+    };
+    const goPageMenu = () => {
+      router.push({ path: "/menu" });
       window.scrollTo(0, 0);
-      this.menu = true;
-    },
-    closeMenuPage() {
-      this.$router.push({ path: "/" });
-      this.menu = false;
-    },
-    activeDarkTheme() {
-      this.$store.dispatch("toggleTheme");
-    },
-    search() {
-      this.$store.state.posts.isSearch = true;
-      this.$store.state.posts.inputSerach = this.searchInput;
-      let allowedValues = this.$store.getters.AllowedValues;
-      if (this.searchInput !== allowedValues) {
-        this.$store.state.posts.isSearch = false;
-        this.$swal({
-          title: "نتیجه یافت نشد",
-          type: "warning",
-          icon: "warning",
-          confirmButtonColor: "#ff0000",
-          confirmButtonText: "OK",
-        });
-      }
-      if (this.searchInput === "" || undefined) {
-        this.$store.state.posts.isSearch = false;
-        this.$swal({
-          title: "لطفا مقداری را وارد کنید",
-          type: "warning",
-          icon: "warning",
-          confirmButtonColor: "#ff0000",
-          confirmButtonText: "OK",
-        });
-      }
-    },
-  },
-  computed: {
-    ...mapGetters({ theme: "getTheme" }),
+      menu.value = true;
+    };
+    const closeMenuPage = () => {
+      router.push({ path: "/" });
+      menu.value = false;
+    };
+    const activeDarkTheme = () => {
+      store.dispatch("toggleTheme");
+    };
+    return {
+      menu,
+      theme,
+      isSearch,
+      homePage,
+      goPageSearch,
+      goPageMenu,
+      closeMenuPage,
+      activeDarkTheme,
+    };
   },
 };
 </script>

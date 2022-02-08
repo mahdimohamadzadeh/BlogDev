@@ -25,36 +25,34 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { computed, ref } from "@vue/reactivity";
+import { useStore } from "vuex";
+import { onMounted } from "@vue/runtime-core";
 export default {
   name: "ScroollTop",
-  data() {
-    return {
-      scTimer: 0,
-      scY: 0,
-    };
-  },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-  },
-  methods: {
-    handleScroll: function () {
-      if (this.scTimer) return;
-      this.scTimer = setTimeout(() => {
-        this.scY = window.scrollY;
-        clearTimeout(this.scTimer);
-        this.scTimer = 0;
+  setup() {
+    const scTimer = ref(0);
+    const scY = ref(0);
+    const store = useStore();
+    const handleScroll = () => {
+      if (scTimer.value) return;
+      scTimer.value = setTimeout(() => {
+        scY.value = window.scrollY;
+        clearTimeout(scTimer.value);
+        scTimer.value = 0;
       }, 100);
-    },
-    toTop: function () {
+    };
+    const toTop = () => {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
-    },
-  },
-  computed: {
-    ...mapGetters({ theme: "getTheme" }),
+    };
+    onMounted(() => {
+      window.addEventListener("scroll", handleScroll);
+    });
+    const theme = computed(() => store.getters.getTheme);
+    return { scTimer, scY, store, handleScroll, toTop, theme };
   },
 };
 </script>

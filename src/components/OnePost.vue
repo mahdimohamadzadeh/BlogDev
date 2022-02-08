@@ -55,28 +55,27 @@
 
 <script>
 import { Icon } from "@iconify/vue";
+import { onMounted, ref } from "@vue/runtime-core";
 export default {
   name: "OnePost",
   props: ["id", "title", "discreption", "date", "category", "like", "url"],
   components: {
     Icon,
   },
-  mounted() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
+  setup(props) {
+    onMounted(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     });
-  },
-  data() {
-    return {
-      isLike: false,
-      img: "http://localhost:3000/src/assets/image/" + this.url,
+    const isLike = ref(false);
+    const img = ref("http://localhost:3000/src/assets/image/" + props.url);
+    const toggleLike = () => {
+      isLike.value = !isLike.value;
     };
-  },
-  methods: {
-    islike() {
-      this.isLike = !this.isLike;
-    },
+
+    return { isLike, img, toggleLike };
   },
 };
 </script>

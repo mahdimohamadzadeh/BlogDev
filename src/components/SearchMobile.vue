@@ -36,31 +36,36 @@
 
 <script>
 import { Icon } from "@iconify/vue";
-import { mapGetters, mapMutations } from "vuex";
+import { useStore } from "vuex";
+import { computed, ref } from "@vue/reactivity";
+import { useRouter } from "vue-router";
+import { inject } from "vue";
 export default {
   components: {
     Icon,
   },
-  data() {
-    return {
-      searchInput: "",
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+    const swal = inject("$swal");
+    const searchInput = ref("");
+    const isSearch = (bol) => {
+      store.commit("CHANGE_STATE_ISSEARCH", bol);
     };
-  },
-  methods: {
-    ...mapMutations({
-      isSearch: "CHANGE_STATE_ISSEARCH",
-      inputSearch: "CHANGE_STATE_INPUTSEARCH",
-    }),
-    closePageSearch() {
-      this.$router.push({ path: "/" });
-    },
-    search() {
-      this.isSearch(true);
-      this.inputSearch(this.searchInput);
-      this.$router.push({ path: "/" });
-      if (this.searchInput !== this.allowedValues) {
-        this.isSearch(false);
-        this.$swal({
+    const inputSearch = (value) => {
+      store.commit("CHANGE_STATE_INPUTSEARCH", value);
+    };
+    const allowedValues = computed(() => store.getters.allowedValues);
+    const closePageSearch = () => {
+      router.push({ path: "/" });
+    };
+    const search = () => {
+      isSearch(true);
+      inputSearch(searchInput.value);
+      // router.push({ path: "/" });
+      if (searchInput.value !== allowedValues) {
+        isSearch(false);
+        swal({
           title: "نتیجه یافت نشد",
           type: "warning",
           icon: "warning",
@@ -68,9 +73,9 @@ export default {
           confirmButtonText: "OK",
         });
       }
-      if (this.searchInput === "" || undefined) {
-        this.isSearch(false);
-        this.$swal({
+      if (searchInput.value === "" || undefined) {
+        isSearch(false);
+        swal({
           title: "لطفا مقداری را وارد کنید",
           type: "warning",
           icon: "warning",
@@ -78,10 +83,9 @@ export default {
           confirmButtonText: "OK",
         });
       }
-    },
-  },
-  computed: {
-    ...mapGetters(["allowedValues"]),
+    };
+
+    return { closePageSearch, search, searchInput };
   },
 };
 </script>

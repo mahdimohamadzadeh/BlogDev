@@ -90,6 +90,6 @@ File structure is almost fine, Composition api, Store modularity, Minimize packa
 
 ## Tech Stack
 
-**Client:** Vuecli, TailwindCSS
+**Client:** Vite, TailwindCSS
 
 **Server:** php, laravel
